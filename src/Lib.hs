@@ -12,6 +12,14 @@ personajePamela = ("Pamela", "LLuvia de tuercas sanadoras", "Torreta curativa", 
 personajes :: [Personaje]
 personajes = [personajeEspina, personajePamela]
 
-bolaEspina :: Int -> Int
-bolaEspina vidaOponente = vidaOponente - 1000
+vidaPersonaje :: Personaje -> Int
+vidaPersonaje (_ ,_ ,_ ,_ , vida) = vida
+
+vidaMenorA :: Personaje -> Int -> Bool
+vidaMenorA personaje danio = (vidaPersonaje personaje) < danio
+
+bolaEspina :: Personaje -> Int
+bolaEspina personaje
+  |vidaMenorA personaje 1000 = 0
+  |otherwise = (vidaPersonaje personaje) - 1000
 
